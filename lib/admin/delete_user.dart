@@ -6,9 +6,9 @@ import 'package:firebase_user2/view_model/function.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Fetch extends StatelessWidget {
+class Remove extends StatelessWidget {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Fetch({super.key});
+  Remove({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class Fetch extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   DocumentSnapshot document = snapshot.data!.docs[index];
                   return Card(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 186, 35, 121),
                       elevation: 0.5,
                       shadowColor: Colors.amber,
                       child: Padding(
@@ -42,9 +42,9 @@ class Fetch extends StatelessWidget {
                         child: Column(
                           children: [
                             ListTile(
-                              leading: Text(document['Name'],
+                              leading: Text(document['name'],
                                   style: TextStyle(fontSize: 20)),
-                              title: Text('Age: ${document['age']}'),
+                              title: Text('Address: ${document['address']}'),
                               subtitle: Text('Id: ${document['id']}'),
                             ),
                             Divider(
@@ -53,21 +53,6 @@ class Fetch extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                UpdateUserDetails()),
-                                      );
-                                    },
-                                    child: Text('Update')),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                Spacer(),
-
                                 ElevatedButton(
                                     onPressed: () async {
                                       obj.deleteuser(document.id);
